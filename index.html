@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cin7 Omni POS & QR Showroom Check-In — Case Study & Interactive Flow</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes arrowPulse {
+      0%, 100% { transform: translateX(0); opacity: 0.7; }
+      50% { transform: translateX(3px); opacity: 1; }
+    }
+    .arrow-active {
+      animation: arrowPulse 0.9s infinite ease-in-out;
+      color: #2563eb !important;
+    }
+    @keyframes lightPulse {
+      0%, 100% { border-color: #3b82f6; box-shadow: 0 4px 20px -2px rgba(59, 130, 246, 0.25); }
+      50% { border-color: #2563eb; box-shadow: 0 10px 25px -3px rgba(37, 99, 235, 0.4); }
+    }
+    .card-active {
+      animation: lightPulse 1.8s infinite ease-in-out;
+      background: #eff6ff !important;
+      border-color: #3b82f6 !important;
+      transform: translateY(-2px);
+    }
+    .card-complete {
+      border-color: #10b981 !important;
+      background: #f0fdf4 !important;
+    }
+    @keyframes pingDot {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+    .dot-pulse {
+      animation: pingDot 1.2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 p-4 md:p-8 antialiased font-sans">
+  
+  <div class="max-w-7xl mx-auto space-y-6">
+    
+    <!-- ========================================== -->
+    <!-- UPPER PART: EXECUTIVE CASE STUDY           -->
+    <!-- Crystal Clear Plain English For Business   -->
+    <!-- ========================================== -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm space-y-6">
+      
+      <!-- Header Strip -->
+      <div class="pb-6 border-b border-slate-200">
+        <div class="flex items-center gap-2 mb-2 flex-wrap">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
+            OPERATIONAL AUTOMATION CASE STUDY
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+            ✓ 100% Live in Production
+          </span>
+          <span class="text-xs text-slate-400">•</span>
+          <span class="text-xs font-medium text-slate-500">Retail & Showroom Operations</span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+          QR Table Check-In & Instant POS Sync for Luxury Retail Showroom
+        </h1>
+        <p class="text-[16px] text-slate-600 mt-2 leading-relaxed">
+          Replacing awkward manual paperwork and glitchy spreadsheets with seamless tabletop VIP registration and instant POS sync.
+        </p>
+      </div>
+
+      <!-- THE PROJECT SUMMARY BANNER -->
+      <div class="bg-gradient-to-r from-blue-50/80 to-indigo-50/80 border border-blue-200/80 rounded-xl p-5 md:p-6 space-y-2.5">
+        <div class="flex items-center gap-2 text-blue-800 font-bold text-sm tracking-wide uppercase">
+          <span>💡</span> The Project Summary
+        </div>
+        <p class="text-[16px] text-slate-800 leading-relaxed font-medium">
+          In a luxury jewelry showroom, closing a high-ticket sale should feel prestigious—not like doing paperwork at the post office. Sales consultants were getting bogged down manually collecting international tourist passports, phone numbers, and flight dates for Australia’s 10% tax-free export scheme. Their early workaround—a fragile patchwork of an online form, Google Sheets, and no-code connectors—was constantly glitching, losing buyer records, and stalling consultations during busy hours. We replaced that broken chain with elegant acrylic QR stands on every viewing table. While admiring gems, clients scan to register their lifetime guarantee in 20 seconds. By the time the consultant prepares the invoice, the client's profile and tax-free status are already active in the Cin7 POS.
+        </p>
+      </div>
+
+      <!-- SIDE-BY-SIDE: BEFORE VS AFTER (THE BUSINESS REALITY) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- BEFORE CARD (RED) -->
+        <div class="bg-rose-50/40 border border-rose-200/80 rounded-xl p-6 space-y-3">
+          <div class="flex items-center gap-2 text-rose-700 font-bold text-sm uppercase tracking-wide">
+            <span>❌</span> BEFORE: Glitchy Workarounds & Broken Sales Momentum
+          </div>
+          <ul class="text-[15px] text-slate-700 space-y-2.5 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold mt-0.5">•</span>
+              <div><strong>Fragile, Glitching Patchwork:</strong> An earlier makeshift setup (form app + Google Sheets + webhooks) constantly froze, broke data sync, and dropped customer contact records.</div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold mt-0.5">•</span>
+              <div><strong>Awkward Admin Kills VIP Mood:</strong> Consultants had to spend 5 minutes manually retyping foreign addresses, phone numbers, and passport details instead of focusing on the sale.</div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold mt-0.5">•</span>
+              <div><strong>Consultants Tied Up During Surges:</strong> When multiple private groups arrived, staff were trapped doing administrative data entry rather than attending to prospective clients.</div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold mt-0.5">•</span>
+              <div><strong>Manual Tax Errors:</strong> Staff had to manually verify flight departure dates and calculate Australia's 10% Tourist Refund Scheme (TRS) discounts by hand.</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- AFTER CARD (GREEN) -->
+        <div class="bg-emerald-50/40 border border-emerald-200/80 rounded-xl p-6 space-y-3">
+          <div class="flex items-center gap-2 text-emerald-700 font-bold text-sm uppercase tracking-wide">
+            <span>✅</span> AFTER: Prestigious VIP Experience & Flawless POS Sync
+          </div>
+          <ul class="text-[15px] text-slate-700 space-y-2.5 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold mt-0.5">•</span>
+              <div><strong>Effortless Tabletop Registration:</strong> Clients scan a branded acrylic QR stand on their viewing table to activate their lifetime guarantee in 20 seconds.</div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold mt-0.5">•</span>
+              <div><strong>Sub-2-Second POS Readiness (&lt; 1.4s):</strong> The profile and tax-free status appear in Cin7 POS before the consultant even opens the invoice screen.</div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold mt-0.5">•</span>
+              <div><strong>100% Reliable Cloud Architecture:</strong> Custom Google Cloud Run microservice handles multiple simultaneous showroom registrations with zero lag or dropped records.</div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold mt-0.5">•</span>
+              <div><strong>Automated 10% Tax Exemption:</strong> Departure dates are automatically verified within the 60-day Australian tax window and tagged GST-Free in Cin7.</div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SECTION 2: EXPANDABLE FULL HD VIDEO WALKTHROUGH          -->
+    <!-- Default: UNEXPANDED                                      -->
+    <!-- ======================================================== -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm space-y-5">
+      
+      <!-- Accordion Header -->
+      <div class="flex items-center justify-between cursor-pointer select-none pb-4 border-b border-slate-200" onclick="toggleVideoSection()">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 flex items-center justify-center flex-shrink-0">
+            <span class="text-xl leading-none">🎬</span>
+          </div>
+          <div>
+            <h2 class="text-base md:text-lg font-bold text-slate-900 tracking-tight">
+              Full 3-Minute HD Video Walkthrough (Narrated Presentation)
+            </h2>
+            <p class="text-xs text-slate-500">
+              1080p full production walkthrough covering physical table stands, Cloud Run shield, and POS handoff.
+            </p>
+          </div>
+        </div>
+        <!-- Clean Symmetrical Pill Button (Default: Unexpanded) -->
+        <span id="video-chevron" class="text-xs text-slate-500 font-semibold bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors">
+          ▼ [Click to Expand]
+        </span>
+      </div>
+
+      <!-- Collapsible Body (Default: HIDDEN) -->
+      <div id="video-content" class="hidden space-y-4 pt-1">
+        <div class="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-900 shadow-lg aspect-video max-w-5xl mx-auto">
+          <video id="main-walkthrough-video" controls class="w-full h-full object-contain" preload="metadata" src="cin7_omni_pos_walkthrough_hd.mp4">
+            <source src="cin7_omni_pos_walkthrough_hd.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 px-2 gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-mono font-semibold">1080p Full HD</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-mono font-semibold">1:44 mins</span>
+            <span>Narrated Video Walkthrough (OpenAI HD Voice)</span>
+          </div>
+          <div>
+            <span>File location: </span>
+            <code class="text-slate-700 font-mono text-[11px] bg-slate-100 px-2 py-0.5 rounded">cin7_omni_pos_walkthrough_hd.mp4</code>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MIDDLE PART: EXPANDABLE WORKFLOW ANIMATION & REAL VOICEOVER  -->
+    <!-- Default: UNEXPANDED                                          -->
+    <!-- ============================================================ -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm space-y-5">
+      
+      <!-- Expandable Accordion Header -->
+      <div class="flex items-center justify-between cursor-pointer select-none pb-4 border-b border-slate-200" onclick="toggleFlowSection()">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 flex items-center justify-center flex-shrink-0">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 dot-pulse"></span>
+          </div>
+          <div>
+            <h2 class="text-base md:text-lg font-bold text-slate-900 tracking-tight">
+              Interactive Customer Journey & Automation Pipeline
+            </h2>
+            <p class="text-xs text-slate-500">
+              5-step end-to-end showroom flow from table QR scan to POS checkout handoff with voiceover walkthrough.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Controls (Visible when expanded) -->
+          <div id="flow-controls" class="hidden items-center gap-2" onclick="event.stopPropagation()">
+            <button id="btn-voice-toggle" onclick="toggleVoiceover()" class="px-2.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-300 transition shadow-sm flex items-center gap-1">
+              <span id="voice-icon">🔊</span> <span id="voice-text">Voiceover: ON</span>
+            </button>
+            <button id="btn-prev" onclick="stepPrev()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300 transition shadow-sm">
+              ◀ Prev
+            </button>
+            <button id="btn-play" onclick="togglePlay()" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm flex items-center gap-1.5 transition">
+              <span id="play-icon">▶</span> <span id="play-text">Auto Play</span>
+            </button>
+            <button id="btn-next" onclick="stepNext()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300 transition shadow-sm">
+              Next ▶
+            </button>
+            <button onclick="resetAnimation()" class="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-500 text-xs font-semibold rounded-lg border border-slate-200 transition">
+              ↺ Reset
+            </button>
+          </div>
+          <!-- Clean Symmetrical Pill Button (Default: Unexpanded) -->
+          <span id="flow-chevron" class="text-xs text-slate-500 font-semibold bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors">
+            ▼ [Click to Expand]
+          </span>
+        </div>
+      </div>
+
+      <!-- Collapsible Container for Pipeline & Voiceover (Default: HIDDEN) -->
+      <div id="flow-content" class="hidden space-y-5">
+        
+        <!-- FIXED EQUAL ROW WITH VERTICALLY CENTERED ARROWS -->
+        <div class="overflow-x-auto pb-3">
+          <div class="min-w-[1020px] flex items-center justify-between gap-0 py-2">
+            
+            <!-- STAGE 1 (Fixed Equal Width) -->
+            <div id="card-1" onclick="jumpToStep(1)" class="w-[195px] flex-shrink-0 border border-slate-200 bg-white rounded-xl p-4 transition-all duration-300 flex flex-col justify-between h-[215px] shadow-sm cursor-pointer hover:border-blue-300">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 text-[11px] font-bold rounded bg-blue-50 text-blue-700 border border-blue-200">STEP 1</span>
+                  <span id="dot-1" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                </div>
+                <div class="text-[15px] font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
+                  <span class="text-base">📱</span> Scan Table QR
+                </div>
+                <p class="text-[13px] text-slate-500 leading-snug">
+                  Shopper scans acrylic stand at the jewelry table. Opens instantly in phone browser with zero app download.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 text-[11px] font-mono flex items-center justify-between text-slate-500">
+                <span>TIME:</span>
+                <span class="text-emerald-600 font-bold">Instant</span>
+              </div>
+            </div>
+
+            <!-- ARROW 1 -> 2 (Vertically Centered) -->
+            <div class="flex-1 flex items-center justify-center px-1">
+              <svg id="arr-1" class="w-8 h-8 text-slate-300 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="12" x2="18" y2="12"></line>
+                <polyline points="12 6 18 12 12 18"></polyline>
+              </svg>
+            </div>
+
+            <!-- STAGE 2 (Fixed Equal Width) -->
+            <div id="card-2" onclick="jumpToStep(2)" class="w-[195px] flex-shrink-0 border border-slate-200 bg-white rounded-xl p-4 transition-all duration-300 flex flex-col justify-between h-[215px] shadow-sm cursor-pointer hover:border-blue-300">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 text-[11px] font-bold rounded bg-blue-50 text-blue-700 border border-blue-200">STEP 2</span>
+                  <span id="dot-2" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                </div>
+                <div class="text-[15px] font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
+                  <span class="text-base">📝</span> 20-Sec Form
+                </div>
+                <p class="text-[13px] text-slate-500 leading-snug">
+                  Customer enters name, phone & flight departure. System auto-calculates 10% tourist tax-free discount.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 text-[11px] font-mono flex items-center justify-between text-slate-500">
+                <span>TIME:</span>
+                <span class="text-emerald-600 font-bold">~15 ms</span>
+              </div>
+            </div>
+
+            <!-- ARROW 2 -> 3 (Vertically Centered) -->
+            <div class="flex-1 flex items-center justify-center px-1">
+              <svg id="arr-2" class="w-8 h-8 text-slate-300 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="12" x2="18" y2="12"></line>
+                <polyline points="12 6 18 12 12 18"></polyline>
+              </svg>
+            </div>
+
+            <!-- STAGE 3 (Fixed Equal Width) -->
+            <div id="card-3" onclick="jumpToStep(3)" class="w-[195px] flex-shrink-0 border border-slate-200 bg-white rounded-xl p-4 transition-all duration-300 flex flex-col justify-between h-[215px] shadow-sm cursor-pointer hover:border-blue-300">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 text-[11px] font-bold rounded bg-amber-50 text-amber-700 border border-amber-200">STEP 3</span>
+                  <span id="dot-3" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                </div>
+                <div class="text-[15px] font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
+                  <span class="text-base">🛡️</span> Instant Check
+                </div>
+                <p class="text-[13px] text-slate-500 leading-snug">
+                  Cloud microservice cleans data, formats international phone codes, and blocks spam bots in milliseconds.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 text-[11px] font-mono flex items-center justify-between text-slate-500">
+                <span>TIME:</span>
+                <span class="text-emerald-600 font-bold">12 ms</span>
+              </div>
+            </div>
+
+            <!-- ARROW 3 -> 4 (Vertically Centered) -->
+            <div class="flex-1 flex items-center justify-center px-1">
+              <svg id="arr-3" class="w-8 h-8 text-slate-300 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="12" x2="18" y2="12"></line>
+                <polyline points="12 6 18 12 12 18"></polyline>
+              </svg>
+            </div>
+
+            <!-- STAGE 4 (Fixed Equal Width) -->
+            <div id="card-4" onclick="jumpToStep(4)" class="w-[195px] flex-shrink-0 border border-slate-200 bg-white rounded-xl p-4 transition-all duration-300 flex flex-col justify-between h-[215px] shadow-sm cursor-pointer hover:border-blue-300">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 text-[11px] font-bold rounded bg-purple-50 text-purple-700 border border-purple-200">STEP 4</span>
+                  <span id="dot-4" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                </div>
+                <div class="text-[15px] font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
+                  <span class="text-base">🔍</span> VIP Lookup
+                </div>
+                <p class="text-[13px] text-slate-500 leading-snug">
+                  Searches store records: updates returning buyers without creating annoying duplicate profiles.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 text-[11px] font-mono flex items-center justify-between text-slate-500">
+                <span>TIME:</span>
+                <span class="text-emerald-600 font-bold">840 ms</span>
+              </div>
+            </div>
+
+            <!-- ARROW 4 -> 5 (Vertically Centered) -->
+            <div class="flex-1 flex items-center justify-center px-1">
+              <svg id="arr-4" class="w-8 h-8 text-slate-300 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="12" x2="18" y2="12"></line>
+                <polyline points="12 6 18 12 12 18"></polyline>
+              </svg>
+            </div>
+
+            <!-- STAGE 5 (Fixed Equal Width) -->
+            <div id="card-5" onclick="jumpToStep(5)" class="w-[195px] flex-shrink-0 border border-slate-200 bg-white rounded-xl p-4 transition-all duration-300 flex flex-col justify-between h-[215px] shadow-sm cursor-pointer hover:border-blue-300">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2 py-0.5 text-[11px] font-bold rounded bg-emerald-50 text-emerald-700 border border-emerald-200">STEP 5</span>
+                  <span id="dot-5" class="w-2.5 h-2.5 rounded-full bg-slate-300"></span>
+                </div>
+                <div class="text-[15px] font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
+                  <span class="text-base">💳</span> Instant POS Sync
+                </div>
+                <p class="text-[13px] text-slate-500 leading-snug">
+                  Profile & 10% tax-free export tag ready on consultant's screen. Sale finalized effortlessly.
+                </p>
+              </div>
+              <div class="pt-2 border-t border-slate-100 text-[11px] font-mono flex items-center justify-between text-slate-500">
+                <span>TOTAL TIME:</span>
+                <span class="text-emerald-600 font-bold">&lt; 1.4 s</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Live Step Details & Voiceover Cue (text-[15px]) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+          
+          <!-- Left: Step Technical Detail -->
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span id="detail-badge" class="px-2.5 py-0.5 text-xs font-bold rounded bg-blue-600 text-white">Step 1</span>
+              <span id="detail-event-tag" class="text-xs font-mono font-bold text-blue-700">ACTION: TABLE_QR_SCANNED</span>
+            </div>
+            <h4 id="detail-title" class="text-base font-bold text-slate-900">1. Shopper Scans QR at Showcase Table</h4>
+            <p id="detail-desc" class="text-[15px] text-slate-600 leading-relaxed">
+              While customers sit and examine luxury gems, they scan a sleek acrylic stand on their table. There are no app store downloads or paper clipboards; the form opens in their phone's mobile browser instantly.
+            </p>
+          </div>
+
+          <!-- Right: Real Voiceover Audio Player & Script Cue -->
+          <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🎙️</span>
+                <span class="text-xs uppercase tracking-wider font-bold text-blue-800">Studio Voiceover (OpenAI HD)</span>
+              </div>
+              <button id="btn-audio-listen" onclick="playCurrentAudio()" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm flex items-center gap-1.5 transition">
+                <span id="audio-icon">▶</span> <span id="audio-text">Play Audio</span>
+              </button>
+            </div>
+            <p id="detail-vo" class="text-[15px] text-slate-700 italic leading-relaxed">
+              "The customer experience starts right at the showcase table. Guests scan the acrylic QR stand on their phone, opening a fast digital check-in form without having to download any app."
+            </p>
+            <div class="pt-1 border-t border-blue-200/60 flex items-center justify-between text-xs text-slate-500">
+              <span class="font-mono text-[11px] text-blue-700" id="audio-file-label">Track: audio/step1.mp3</span>
+              <span class="text-[11px] text-emerald-700 font-semibold" id="audio-status-label">Ready to play</span>
+            </div>
+            <!-- Audio element -->
+            <audio id="audio-player" class="w-full h-8 pt-1" controls preload="auto" src="audio/step1.mp3"></audio>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- LOWER PART: EXPANDABLE ARCHITECTURE, BENEFITS & SECURITY -->
+    <!-- Default: UNEXPANDED                                      -->
+    <!-- ======================================================== -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm space-y-5">
+      
+      <!-- Accordion Header -->
+      <div class="flex items-center justify-between cursor-pointer select-none pb-4 border-b border-slate-200" onclick="toggleArchSection()">
+        <div class="flex items-center gap-3">
+          <div class="w-7 h-7 flex items-center justify-center flex-shrink-0">
+            <span class="text-xl leading-none">🏛️</span>
+          </div>
+          <div>
+            <h2 class="text-base md:text-lg font-bold text-slate-900 tracking-tight">
+              Technical Architecture, Business Benefits & Security Deep Dive
+            </h2>
+            <p class="text-xs text-slate-500">
+              Why this serverless architecture is 100x more reliable than Zapier/Make.com, and costs $0/month.
+            </p>
+          </div>
+        </div>
+        <!-- Clean Symmetrical Pill Button (Default: Unexpanded) -->
+        <span id="arch-chevron" class="text-xs text-slate-500 font-semibold bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-1.5 rounded-lg whitespace-nowrap transition-colors">
+          ▼ [Click to Expand]
+        </span>
+      </div>
+
+      <!-- Collapsible Body (Default: HIDDEN) -->
+      <div id="arch-content" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        
+        <!-- Pillar 1: Technical Architecture -->
+        <div class="bg-slate-50/70 border border-slate-200 rounded-xl p-6 space-y-3">
+          <div class="flex items-center gap-2 text-blue-600 font-bold text-sm">
+            <span>⚙️</span>
+            <h3>WHY SERVERLESS BEATS NO-CODE</h3>
+          </div>
+          <ul class="text-[15px] text-slate-600 space-y-2.5 leading-relaxed">
+            <li>
+              • <strong>Instant Auto-Scaling:</strong> Handles busy showroom surges with zero lag, unlike Make/Zapier which time out or drop records on sudden spikes.
+            </li>
+            <li>
+              • <strong>Local Sydney Deployment:</strong> Hosted in Google Cloud's Sydney datacenter (`australia-southeast1`) ensuring blistering 12ms network roundtrips.
+            </li>
+            <li>
+              • <strong>Asynchronous Staff Alerts:</strong> Internal notifications (Slack floor alerts, manager emails) run in the background so customer POS checkout is never delayed.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2: Enterprise Benefits -->
+        <div class="bg-emerald-50/40 border border-emerald-200/70 rounded-xl p-6 space-y-3">
+          <div class="flex items-center gap-2 text-emerald-700 font-bold text-sm">
+            <span>💎</span>
+            <h3>BOTTOM-LINE BUSINESS IMPACT</h3>
+          </div>
+          <ul class="text-[15px] text-slate-600 space-y-2.5 leading-relaxed">
+            <li>
+              • <strong>Protected VIP Luxury Ambiance:</strong> Sales consultants remain 100% focused on consultation and closing without awkward administrative interruption.
+            </li>
+            <li>
+              • <strong>Automated 10% Tax Exemption:</strong> Pre-qualifies departing international visitors under Australia's Tourist Refund Scheme (TRS) without cashier math errors.
+            </li>
+            <li>
+              • <strong>Saved $4,000+ per Year:</strong> Replaced bloated monthly SaaS subscriptions (Tally, Make, Mailgun) with a custom microservice running 100% inside GCP's free tier.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3: Multi-Layer Security -->
+        <div class="bg-amber-50/40 border border-amber-200/70 rounded-xl p-6 space-y-3">
+          <div class="flex items-center gap-2 text-amber-700 font-bold text-sm">
+            <span>🛡️</span>
+            <h3>STORE DATA SECURITY & INTEGRITY</h3>
+          </div>
+          <ul class="text-[15px] text-slate-600 space-y-2.5 leading-relaxed">
+            <li>
+              • <strong>Smart VIP Deduplication:</strong> Intelligently matches existing buyers by phone or email. Never creates messy duplicate accounts or overwrites VIP purchase histories.
+            </li>
+            <li>
+              • <strong>Spam & Bot Shield:</strong> Built-in rate limiters and honeypot traps prevent internet scrapers from spamming the form or overloading store databases.
+            </li>
+            <li>
+              • <strong>Bank-Grade Encryption:</strong> All store POS credentials and API keys are stored in encrypted Google Secret Manager with strict access controls.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Expand / Collapse Toggles
+    function toggleVideoSection() {
+      const content = document.getElementById('video-content');
+      const chevron = document.getElementById('video-chevron');
+      const video = document.getElementById('main-walkthrough-video');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        chevron.textContent = '▲ [Click to Collapse]';
+      } else {
+        content.classList.add('hidden');
+        chevron.textContent = '▼ [Click to Expand]';
+        if (video && !video.paused) {
+          video.pause();
+        }
+      }
+    }
+
+    function toggleFlowSection() {
+      const content = document.getElementById('flow-content');
+      const chevron = document.getElementById('flow-chevron');
+      const controls = document.getElementById('flow-controls');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        if (controls) {
+          controls.classList.remove('hidden');
+          controls.classList.add('flex');
+        }
+        chevron.textContent = '▲ [Click to Collapse]';
+      } else {
+        content.classList.add('hidden');
+        if (controls) {
+          controls.classList.add('hidden');
+          controls.classList.remove('flex');
+        }
+        chevron.textContent = '▼ [Click to Expand]';
+        pause();
+      }
+    }
+
+    function toggleArchSection() {
+      const content = document.getElementById('arch-content');
+      const chevron = document.getElementById('arch-chevron');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        chevron.textContent = '▲ [Click to Collapse]';
+      } else {
+        content.classList.add('hidden');
+        chevron.textContent = '▼ [Click to Expand]';
+      }
+    }
+
+    // Step Data definitions (Plain English + Audio Paths)
+    const steps = [
+      {
+        id: 1,
+        title: "1. Shopper Scans QR at Showcase Table",
+        badge: "Step 1",
+        tag: "ACTION: TABLE_QR_SCANNED",
+        audioSrc: "audio/step1.mp3",
+        desc: "While customers sit and examine luxury gems, they scan a sleek acrylic stand on their table. There are no app store downloads or paper clipboards; the check-in form opens in their phone's mobile browser instantly.",
+        vo: '"The customer experience starts right at the showcase table. Guests scan the acrylic QR stand on their phone, opening a fast digital check-in form without having to download any app."',
+        cardId: "card-1",
+        dotId: "dot-1",
+        arrId: null
+      },
+      {
+        id: 2,
+        title: "2. Fast 20-Second Mobile Check-In",
+        badge: "Step 2",
+        tag: "ACTION: FORM_SUBMITTED",
+        audioSrc: "audio/step2.mp3",
+        desc: "The guest enters their basic contact details and flight departure date. The system automatically verifies if they qualify for Australia's 10% Tourist Refund Scheme (TRS), removing the need for cashiers to calculate tax discounts manually.",
+        vo: '"In just twenty seconds, the guest enters their contact details. The system checks their departure date and automatically qualifies them for tax-free tourist shopping."',
+        cardId: "card-2",
+        dotId: "dot-2",
+        arrId: "arr-1"
+      },
+      {
+        id: 3,
+        title: "3. Instant Security & Data Validation",
+        badge: "Step 3",
+        tag: "ACTION: CLOUD_SHIELD_VERIFIED",
+        audioSrc: "audio/step3.mp3",
+        desc: "Our high-speed Google Cloud microservice in Sydney processes the submission in 12 milliseconds. It cleans and standardizes international phone numbers and blocks spam bots before anything touches the store database.",
+        vo: '"Behind the scenes, our Sydney cloud microservice cleans the data, formats international phone numbers, and blocks spam bots in just twelve milliseconds."',
+        cardId: "card-3",
+        dotId: "dot-3",
+        arrId: "arr-2"
+      },
+      {
+        id: 4,
+        title: "4. Smart VIP Lookup & Clean Record Sync",
+        badge: "Step 4",
+        tag: "ACTION: ERP_DEDUPLICATED",
+        audioSrc: "audio/step4.mp3",
+        desc: "The system searches the store's Cin7 database in 840ms. If it's a returning VIP customer, it smoothly links to their existing file—never creating messy duplicate contacts or corrupting past purchase records.",
+        vo: '"Next, the system checks the store database. Returning VIPs are safely recognized and updated without creating messy duplicate accounts or corrupting purchase histories."',
+        cardId: "card-4",
+        dotId: "dot-4",
+        arrId: "arr-3"
+      },
+      {
+        id: 5,
+        title: "5. Seamless POS Readiness in < 1.4s",
+        badge: "Step 5",
+        tag: "ACTION: POS_HANDOFF_COMPLETE",
+        audioSrc: "audio/step5.mp3",
+        desc: "When the consultant opens the invoice in Cin7 POS, the client's profile is already linked with their 10% tax-free export status pre-applied. High-ticket sales are closed smoothly with zero awkward administrative delay.",
+        vo: '"When the consultant opens the invoice in Cin7, the client\'s profile is already active with their tax-free export status pre-applied. The sale is finalized smoothly with zero administrative delay."',
+        cardId: "card-5",
+        dotId: "dot-5",
+        arrId: "arr-4"
+      }
+    ];
+
+    let currentStep = 1;
+    let isPlaying = false;
+    let voiceoverEnabled = true;
+    let stepTimer = null;
+    const audioElement = document.getElementById('audio-player');
+
+    // Audio Playback Listener for Auto-Play Sequencing
+    if (audioElement) {
+      audioElement.addEventListener('ended', () => {
+        document.getElementById('audio-icon').textContent = '▶';
+        document.getElementById('audio-text').textContent = 'Play Audio';
+        document.getElementById('audio-status-label').textContent = 'Finished';
+        
+        // If Auto-Play is currently running, automatically advance after a brief 800ms natural pause
+        if (isPlaying) {
+          stepTimer = setTimeout(() => {
+            stepNext();
+          }, 800);
+        }
+      });
+
+      audioElement.addEventListener('play', () => {
+        document.getElementById('audio-icon').textContent = '⏸';
+        document.getElementById('audio-text').textContent = 'Pause';
+        document.getElementById('audio-status-label').textContent = 'Playing...';
+      });
+
+      audioElement.addEventListener('pause', () => {
+        document.getElementById('audio-icon').textContent = '▶';
+        document.getElementById('audio-text').textContent = 'Play Audio';
+        if (!audioElement.ended) {
+          document.getElementById('audio-status-label').textContent = 'Paused';
+        }
+      });
+    }
+
+    function toggleVoiceover() {
+      voiceoverEnabled = !voiceoverEnabled;
+      const btn = document.getElementById('btn-voice-toggle');
+      const icon = document.getElementById('voice-icon');
+      const txt = document.getElementById('voice-text');
+      
+      if (voiceoverEnabled) {
+        btn.className = "px-2.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-300 transition shadow-sm flex items-center gap-1";
+        icon.textContent = "🔊";
+        txt.textContent = "Voiceover: ON";
+      } else {
+        btn.className = "px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-500 text-xs font-bold rounded-lg border border-slate-300 transition shadow-sm flex items-center gap-1";
+        icon.textContent = "🔇";
+        txt.textContent = "Voiceover: OFF";
+        if (audioElement && !audioElement.paused) {
+          audioElement.pause();
+        }
+      }
+    }
+
+    function playCurrentAudio() {
+      if (!audioElement) return;
+      if (audioElement.paused) {
+        audioElement.play().catch(e => {
+          console.warn("Audio play prevented:", e);
+          fallbackSpeech(steps[currentStep - 1].vo);
+        });
+      } else {
+        audioElement.pause();
+      }
+    }
+
+    function fallbackSpeech(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const clean = text.replace(/"/g, '');
+        const utt = new SpeechSynthesisUtterance(clean);
+        utt.rate = 1.0;
+        utt.pitch = 1.0;
+        utt.onend = () => {
+          if (isPlaying) {
+            stepTimer = setTimeout(stepNext, 800);
+          }
+        };
+        window.speechSynthesis.speak(utt);
+      }
+    }
+
+    function renderStep(stepIndex, shouldPlayAudio = false) {
+      currentStep = stepIndex;
+      const s = steps[stepIndex - 1];
+
+      // Clear any pending timeout
+      if (stepTimer) clearTimeout(stepTimer);
+
+      // Update Detail Card & Voiceover Cue
+      document.getElementById('detail-badge').textContent = s.badge;
+      document.getElementById('detail-event-tag').textContent = s.tag;
+      document.getElementById('detail-title').textContent = s.title;
+      document.getElementById('detail-desc').textContent = s.desc;
+      document.getElementById('detail-vo').textContent = s.vo;
+
+      // Update Audio Player
+      if (audioElement) {
+        audioElement.src = s.audioSrc;
+        document.getElementById('audio-file-label').textContent = `Track: ${s.audioSrc}`;
+        document.getElementById('audio-status-label').textContent = 'Ready to play';
+        
+        if (voiceoverEnabled && (isPlaying || shouldPlayAudio)) {
+          audioElement.currentTime = 0;
+          const playPromise = audioElement.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(error => {
+              console.log("Autoplay was prevented by browser policy:", error);
+              // Fallback to speech synthesis if audio file cannot autoplay
+              fallbackSpeech(s.vo);
+            });
+          }
+        }
+      }
+
+      // Update Card Visuals
+      for (let i = 1; i <= 5; i++) {
+        const card = document.getElementById(`card-${i}`);
+        const dot = document.getElementById(`dot-${i}`);
+        
+        card.classList.remove('card-active', 'card-complete');
+        dot.classList.remove('dot-pulse');
+        
+        if (i < currentStep) {
+          card.classList.add('card-complete');
+          dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500";
+        } else if (i === currentStep) {
+          card.classList.add('card-active');
+          dot.className = "w-2.5 h-2.5 rounded-full bg-blue-600 dot-pulse";
+        } else {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-slate-300";
+        }
+      }
+
+      // Update Arrows
+      for (let i = 1; i <= 4; i++) {
+        const arr = document.getElementById(`arr-${i}`);
+        if (arr) {
+          if (i < currentStep) {
+            arr.classList.remove('arrow-active');
+            arr.style.color = '#10b981'; // emerald-500
+          } else if (i === currentStep - 1) {
+            arr.classList.add('arrow-active');
+            arr.style.color = '#2563eb'; // blue-600
+          } else {
+            arr.classList.remove('arrow-active');
+            arr.style.color = '#cbd5e1'; // slate-300
+          }
+        }
+      }
+
+      // Fallback timer if voiceover is disabled or audio doesn't fire ended
+      if (isPlaying && (!voiceoverEnabled || !audioElement)) {
+        stepTimer = setTimeout(() => {
+          stepNext();
+        }, 3600);
+      }
+    }
+
+    function jumpToStep(num) {
+      renderStep(num, voiceoverEnabled);
+    }
+
+    function stepNext() {
+      if (currentStep < 5) {
+        renderStep(currentStep + 1, isPlaying || voiceoverEnabled);
+      } else {
+        if (isPlaying) {
+          pause(); // Stop after complete cycle
+        }
+        renderStep(1, false);
+      }
+    }
+
+    function stepPrev() {
+      if (currentStep > 1) {
+        renderStep(currentStep - 1, voiceoverEnabled);
+      } else {
+        renderStep(5, voiceoverEnabled);
+      }
+    }
+
+    function resetAnimation() {
+      pause();
+      renderStep(1, false);
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        pause();
+      } else {
+        play();
+      }
+    }
+
+    function play() {
+      isPlaying = true;
+      document.getElementById('play-icon').textContent = '⏸';
+      document.getElementById('play-text').textContent = 'Pause';
+      document.getElementById('btn-play').className = "px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow-sm flex items-center gap-1.5 transition";
+      
+      // Start immediately with current step
+      renderStep(currentStep, voiceoverEnabled);
+    }
+
+    function pause() {
+      isPlaying = false;
+      document.getElementById('play-icon').textContent = '▶';
+      document.getElementById('play-text').textContent = 'Auto Play';
+      document.getElementById('btn-play').className = "px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm flex items-center gap-1.5 transition";
+      if (stepTimer) clearTimeout(stepTimer);
+      if (audioElement && !audioElement.paused) {
+        audioElement.pause();
+      }
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    // Initial render without triggering autoplay sound
+    renderStep(1, false);
+  </script>
+</body>
+</html>
